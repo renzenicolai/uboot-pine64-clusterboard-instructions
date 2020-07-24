@@ -33,6 +33,18 @@ When saved using `saveenv` the environment will be stored as a file called `uboo
 
 The default bootcmd loads a script called "boot.scr" from the root of the first partition (which also contains the U-boot environment as a file called `uboot.env`).
 
+## Settings for booting using the Arch Linux ARM boot.scr file for Pine64
+
+```
+setenv board sopine-baseboard
+setenv board_name sopine-baseboard
+setenv devtype mmc
+setenv devnum 0
+setenv bootpart 2
+setenv bootcmd "load mmc 0:1 ${scriptaddr} /boot.scr; source ${scriptaddr}; reset"
+saveenv
+```
+
 ## GIT hash of version used to build the binary
 
 `v2020.07-999-g56d37f1c56`
