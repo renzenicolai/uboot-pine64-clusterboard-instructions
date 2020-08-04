@@ -45,6 +45,9 @@ setenv bootcmd "load mmc 0:1 ${scriptaddr} /boot.scr; source ${scriptaddr}; rese
 saveenv
 ```
 
+## Clusterboard
+Change ```CONFIG_DEFAULT_DEVICE_TREE``` to ```sun50i-a64-sopine-clusterboard```
+
 ## GIT hash of version used to build the binary
 
 `v2020.07-999-g56d37f1c56`
