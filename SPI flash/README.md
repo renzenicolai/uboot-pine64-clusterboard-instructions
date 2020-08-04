@@ -25,6 +25,9 @@ The default environment does load the PXE boot menu my PXE server presents over 
 
 You can view the environment using `printenv`, there is a lot of stuff in there so when looking at the boot process keep in mind that the first command executed is the `bootcmd`.
 
+## Clusterboard
+Change ```CONFIG_DEFAULT_DEVICE_TREE``` to ```sun50i-a64-sopine-clusterboard```
+
 ## GIT hash of version used to build the binary
 
 `v2020.07-999-g56d37f1c56`
