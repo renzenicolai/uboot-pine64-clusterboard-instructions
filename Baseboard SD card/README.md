@@ -10,7 +10,11 @@ Download the file "u-boot-sunxi-with-spi.bin" from this folder.
 
 ## 2. Partitioning the SD card
 
-You can use fdisk to partition the SD card, simply run
+First wipe the start of the SD card using
+
+`dd if=/dev/zero of=/dev/mmcblkX bs=1M count=8`
+
+You can then use fdisk to partition the SD card, simply run
 
 `fdisk /dev/mmcblkX`
 
