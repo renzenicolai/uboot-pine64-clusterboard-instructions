@@ -1,9 +1,3 @@
-# U-Boot for sopine modules
+# U-Boot for SoPine modules
 
-This repo contains a bootloader for booting from SD card and a bootloader for booting using the SPI flash chip.
-
-## GIT hash of version used to build the binaries included in this repository
-
-`v2020.07-999-g56d37f1c56`
-
-`95fc1f164723270b2b0bd8d7e2f7ba21bce66381`
+This repo contains instructions for compiling the U-boot bootloader for SoPine modules for use on the Clusterboard and for booting SoPine modules using the on board SPI flash chip.
