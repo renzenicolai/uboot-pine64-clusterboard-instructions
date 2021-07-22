@@ -24,3 +24,32 @@ Saving the environment to the SPI flash chip using `saveenv` works, but I haven'
 The default environment does load the PXE boot menu my PXE server presents over the network.
 
 You can view the environment using `printenv`, there is a lot of stuff in there so when looking at the boot process keep in mind that the first command executed is the `bootcmd`.
+
+# Building U-Boot
+
+## Get the source
+ 
+ - U-Boot: https://github.com/renzenicolai/uboot-pine64-clusterboard
+ - ARM trusted firmware: https://github.com/ARM-software/arm-trusted-firmware
+ - Coprocessor firmware: https://github.com/crust-firmware/crust
+
+## Build the ARM trusted firmware
+
+`make CROSS_COMPILE=aarch64-linux-gnu- PLAT=sun50i_a64 DEBUG=1 bl31`
+
+## Build the coprocessor firmware
+
+```
+make CROSS_COMPILE=or1k-elf- pine64_plus_defconfig
+make CROSS_COMPILE=or1k-elf- scp
+```
+
+## Select the correct configuration
+
+`make CROSS_COMPILE=aarch64-linux-gnu- sopine_baseboard_spi_defconfig`
+
+## Build U-Boot
+
+Assuming the `bl31.bin` ARM trusted firmware and the `scp.bin` coprocessor firmware are in the parent folder:
+
+`make CROSS_COMPILE=aarch64-linux-gnu- BL31=../bl31.bin SCP=../scp.bin -j4`
