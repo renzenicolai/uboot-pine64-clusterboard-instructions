@@ -2,7 +2,7 @@
 
 The included configuration stores it's environment on the SPI flash.
 
-## Partitioning and writing to the SPI flash
+## Partitioning and writing to the SPI flash from Linux
 
 First install the `mtd-utils` package, then run the following commands:
 
@@ -11,6 +11,15 @@ sudo mtdpart add /dev/mtd0 "U-Boot" 0 0xc0000
 sudo mtdpart add /dev/mtd0 "Env" 0xc0000 0xc0000
 sudo flash_erase /dev/mtd1 0 1
 sudo flashcp u-boot-sunxi-with-spl.bin /dev/mtd1
+```
+
+## Writing to the SPI flash from U-boot
+
+```
+sf probe 0
+load mmc 0:1 ${kernel_addr_r} u-boot-sunxi-with-spl.bin
+sf erase 0 +${filesize}
+sf write ${kernel_addr_r} 0 ${filesize}
 ```
 
 ## Default boot command
