@@ -70,6 +70,8 @@ The default bootcmd loads a script called "boot.scr" from the root of the first 
 
 ## Build the coprocessor firmware
 
+Note: including the coprocessor firmware causes reboot issues, skip this step for now.
+
 ```
 make CROSS_COMPILE=or1k-elf- pine64_plus_defconfig
 make CROSS_COMPILE=or1k-elf- scp
@@ -81,18 +83,16 @@ make CROSS_COMPILE=or1k-elf- scp
 
 ## Build U-Boot
 
+### Building without the SCP firmware (recommended for now):
+
+Assuming the `bl31.bin` ARM trusted firmware is in the parent folder:
+
+`make CROSS_COMPILE=aarch64-linux-gnu- BL31=../bl31.bin -j4`
+
+U-boot will give a warning about the missing SCP blob, you can ignore this.
+
+### Building with the SCP firmware (reboot won't work!):
+
 Assuming the `bl31.bin` ARM trusted firmware and the `scp.bin` coprocessor firmware are in the parent folder:
 
 `make CROSS_COMPILE=aarch64-linux-gnu- BL31=../bl31.bin SCP=../scp.bin -j4`
-
-# Settings for booting using the Arch Linux ARM boot.scr file for Pine64
-
-```
-setenv board sopine-clusterboard
-setenv board_name sopine-clusterboard
-setenv devtype mmc
-setenv devnum 0
-setenv bootpart 2
-setenv bootcmd "load mmc 0:1 ${scriptaddr} /boot.scr; source ${scriptaddr}; reset"
-saveenv
-```
