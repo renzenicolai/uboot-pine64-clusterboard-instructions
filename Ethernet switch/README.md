@@ -70,7 +70,7 @@ The contents of the EEPROM can be found in `eeprom.bin` in this repository.
 
 ## Understanding the file contents
 
-Some register documentation can be found online ([rtl8370_reg.h](https://github.com/andy-padavan/rt-n56u/blob/master/uboot/mips/uboot-5.x.x.x/drivers/rtl8367/api_8370/rtl8370_reg.h)).
+Some register documentation can be found online ([rtl8370_reg.h (1)](https://github.com/andy-padavan/rt-n56u/blob/master/uboot/mips/uboot-5.x.x.x/drivers/rtl8367/api_8370/rtl8370_reg.h) / [rtl8370_reg.h (2)](https://github.com/andy-padavan/rt-n56u/blob/master/trunk/linux-3.0.x/drivers/net/rtl8367/api_8370/rtl8370_reg.h)).
 
 The EEPROM seems to contain information ordered in 16-bit words. The meaning of the first word is unknown to me, but from the second word on the contents appear to be organized as 1 word for the register address and 1 word for the data to be written to said address.
 
