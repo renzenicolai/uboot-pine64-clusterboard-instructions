@@ -72,7 +72,7 @@ The contents of the EEPROM can be found in `eeprom.bin` in this repository.
 
 Some register documentation can be found online ([rtl8370_reg.h (1)](https://github.com/andy-padavan/rt-n56u/blob/master/uboot/mips/uboot-5.x.x.x/drivers/rtl8367/api_8370/rtl8370_reg.h) / [rtl8370_reg.h (2)](https://github.com/andy-padavan/rt-n56u/blob/master/trunk/linux-3.0.x/drivers/net/rtl8367/api_8370/rtl8370_reg.h)).
 
-The EEPROM seems to contain information ordered in 16-bit words. The meaning of the first word is unknown to me, but from the second word on the contents appear to be organized as 1 word for the register address and 1 word for the data to be written to said address.
+The EEPROM seems to contain information ordered in 16-bit words. The first word contains the address in the EEPROM of the address of the last register that will be written to. From the second word on the contents appear to be organized as 1 word for the register address and 1 word for the data to be written to said address.
 
 ### What's in the file?
 
@@ -207,3 +207,7 @@ The VLAN registers can also be found inside the register map, I suspect it might
 ## Resetting the switch chip
 
 Connect the trace between R24 and C28 to a GPIO pin, pulling this pin low will put the ethernet switch chip into reset state. R24 and C28 can be found directly below the EEPROM chip.
+
+## Configuring VLANs
+
+Work in progress, maybe we can find some usefull hints [here](https://bitbucket.org/padavan/rt-n56u/src/master/trunk/linux-3.4.x/drivers/net/rtl8367/rtl8367_drv.c).

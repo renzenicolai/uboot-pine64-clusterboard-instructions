@@ -2,12 +2,20 @@ def main():
     global names
     with open("eeprom.bin", "rb") as f:
         eeprom = f.read()
+        
+    position = 0
 
-    position = 2 # Skip first word
+    # Read the length of data to be parsed
+    length = eeprom[position] + (eeprom[position + 1] << 8)
+    position += 2
     
-    print("| Address | Register name                            | Value |")
-    print("|---------|------------------------------------------|-------|")
+    print("Position of last register write action to read from the EEPROM: 0x{:04X}".format(length))
+    print("")
+    
+    print("| #   | Position | Address | Register name                            | Value  |")
+    print("|-----|----------|---------|------------------------------------------|--------|")
 
+    count = 0
     while position < len(eeprom) - 3:
         register = eeprom[position] + (eeprom[position + 1] << 8)
         value = eeprom[position + 2] + (eeprom[position + 3] << 8)
@@ -16,7 +24,8 @@ def main():
             name = ""
             if register in names:
                 name = names[register]
-            print("|    {:4X} | {} |  {:4X} |".format(register, name.ljust(40), value))
+            count += 1
+            print("| {:3d} |   0x{:04X} |  0x{:04X} | {} | 0x{:04X} |".format(count, position, register, name.ljust(40), value))
             
 
 names = {
