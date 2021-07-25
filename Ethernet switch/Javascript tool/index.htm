@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="">
+  <head>
+    <meta charset="utf-8">
+    <title>RTL8370 tool</title>
+    <script src="rtl8370.js"></script>
+    <script src="names.js"></script>
+    <link rel="stylesheet" href="style.css">
+  </head>
+  <body onload="openDefault();">
+    <div class="header">RTL8370 tool</div>
+    <div class="toolbar"><a onclick="openClusterboard();" href="#">[OPEN CLUSTERBOARD DEFAULT]</a>&nbsp;<a onclick="openFile();" href="#">[OPEN FILE]</a>&nbsp;<a onclick="saveFile();"  href="#">[SAVE FILE]</a></div>
+    <div class="editor" id="editor">Loading... (Please make sure JavaScript is enabled)</div>
+    <div class="toolbar"><a href="#" onclick="editorNew();">Add entry...</a></div>
+    <div style="display: none;"><input type="file" id="file" onchange="openFileCallback();"/></div>
+  </body>
+</html>
